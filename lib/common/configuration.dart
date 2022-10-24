@@ -1,5 +1,5 @@
+import 'package:app_manage_company_data/companies/pages/create-company.page.dart';
 import 'package:flutter/material.dart';
-
 import 'home.page.dart';
 
 //Variables App
@@ -71,6 +71,25 @@ TextStyle textStyleItemMenuDrawer(){
     fontSize: 14,
   );
 }
+TextStyle textStyleTextfieldLogin(){
+  return const TextStyle(
+    color: primaryColor,
+    fontSize: 14,
+  );
+}
+TextStyle textStyleTextfieldLoginHint(){
+  return const TextStyle(
+    color: textHintTextFieldColor,
+    fontSize: 11,
+  );
+}
+TextStyle textStyleLabelTextfield(){
+  return const TextStyle(
+      color: textSubtitleGris,
+      fontSize: 12,
+      fontWeight: FontWeight.bold
+  );
+}
 
 //Controllers
 //Routes animated
@@ -79,6 +98,19 @@ Route? createRoute(String pageRoute, {var parametros, var parametros2, var param
     case 'home':{
       return PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => const HomePage(),
+          transitionDuration: const Duration(milliseconds: 800),
+          transitionsBuilder: (context, animation, secondaryAnimation, child){
+            final curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+            return FadeTransition(
+              opacity: Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation),
+              child: child,
+            );
+          }
+      );
+    }break;
+    case 'create-company':{
+      return PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => CreateCompanyPage(),
           transitionDuration: const Duration(milliseconds: 800),
           transitionsBuilder: (context, animation, secondaryAnimation, child){
             final curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeInOut);
